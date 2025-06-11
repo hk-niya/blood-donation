@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Connect</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap"
+        rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^0.7.0"
+        }
+      }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🩸</span> Blood Donation Connect
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#why-donate">Why Donate?</a></li>
+                    <li><a href="#eligibility">Eligibility</a></li>
+                    <li><a href="#donation-process">Donation Process</a></li>
+                    <li><a href="#find-center">Find a Center</a></li>
+                    <li><a href="#register">Register to Donate</a></li>
+                    <li><a href="#request-blood">Request Blood</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1>Give the Gift of Life</h1>
+                <p>Your blood donation can save up to three lives. Join us in making a difference.</p>
+                <a href="#find-center" class="btn btn-primary">Find a Center</a>
+                <a href="#register" class="btn btn-secondary">Register to Donate</a>
+            </div>
+        </section>
+
+        <section id="why-donate" class="content-section">
+            <div class="container">
+                <h2>Why Donate Blood?</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <span class="reason-icon">❤️</span>
+                        <h3>Save Lives</h3>
+                        <p>Every 2 seconds, someone in the U.S. needs blood. Your donation is crucial for surgeries,
+                            cancer treatments, chronic illnesses, and traumatic injuries.</p>
+                    </div>
+                    <div class="reason-card">
+                        <span class="reason-icon">➕</span>
+                        <h3>Community Impact</h3>
+                        <p>Strengthen your community by ensuring a stable blood supply. It's a simple act with a
+                            profound impact on local health.</p>
+                    </div>
+                    <div class="reason-card">
+                        <span class="reason-icon">😊</span>
+                        <h3>Personal Fulfillment</h3>
+                        <p>Experience the satisfaction of knowing you've helped someone in need. It's a selfless act
+                            that benefits both the receiver and the donor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="eligibility" class="content-section alt-bg">
+            <div class="container">
+                <h2>Are You Eligible to Donate?</h2>
+                <p>Most healthy adults can donate blood. General guidelines include:</p>
+                <ul>
+                    <li>Be in good general health and feeling well.</li>
+                    <li>Be at least 17 years old (or 16 with parental consent in some areas).</li>
+                    <li>Weigh at least 110 lbs.</li>
+                    <li>Have not donated whole blood in the last 56 days (8 weeks).</li>
+                </ul>
+
+                <div id="lastDonationDateContainer" class="content-subsection">
+                    <h3>Check Your Donation Interval</h3>
+                    <p>If you've donated before, ensure at least 56 days have passed since your last whole blood
+                        donation.</p>
+                    <div class="form-group">
+                        <label for="lastDonationDate">Your Last Donation Date:</label>
+                        <input type="date" id="lastDonationDate" name="lastDonationDate">
+                    </div>
+                    <button id="checkIntervalButton" class="btn btn-primary">Check My Interval</button>
+                    <div id="intervalCheckResult" class="form-feedback" aria-live="polite">
+                        <!-- Interval check result will be displayed here -->
+                    </div>
+                </div>
+
+                <p>For specific eligibility questions, please consult with donation center staff or your healthcare
+                    provider.</p>
+                <a href="#" class="btn btn-secondary">Learn More About Eligibility</a>
+            </div>
+        </section>
+
+        <section id="donation-process" class="content-section">
+            <div class="container">
+                <h2>The Blood Donation Process: Step by Step</h2>
+                <p>Understanding the donation process can help you feel more prepared and comfortable. Here’s what you
+                    can typically expect:</p>
+                <div class="process-steps-grid">
+                    <div class="process-step-card">
+                        <span class="step-number">1</span>
+                        <h3>Registration</h3>
+                        <p>Upon arrival, you'll complete a confidential registration form with your personal details and
+                            sign a consent form. Please bring a valid photo ID.</p>
+                    </div>
+                    <div class="process-step-card">
+                        <span class="step-number">2</span>
+                        <h3>Health Screening</h3>
+                        <p>A trained staff member will conduct a private and confidential interview about your health
+                            history and lifestyle. They'll also check your temperature, pulse, blood pressure, and
+                            hemoglobin level (a small prick on your finger).</p>
+                    </div>
+                    <div class="process-step-card">
+                        <span class="step-number">3</span>
+                        <h3>The Donation</h3>
+                        <p>You'll proceed to a donor couch. A phlebotomist will clean an area on your arm and insert a
+                            new, sterile needle for the blood draw. The actual donation takes about 8-10 minutes for one
+                            unit (about a pint) of blood.</p>
+                    </div>
+                    <div class="process-step-card">
+                        <span class="step-number">4</span>
+                        <h3>Refreshments & Rest</h3>
+                        <p>After donating, you'll rest for 10-15 minutes and enjoy some complimentary refreshments. This
+                            helps your body adjust and replenish fluids.</p>
+                    </div>
+                    <div class="process-step-card">
+                        <span class="step-number">5</span>
+                        <h3>After Care</h3>
+                        <p>Drink extra fluids for the next 24-48 hours. Avoid strenuous physical activity or heavy
+                            lifting for the rest of the day. If you feel dizzy, lie down until the feeling passes.
+                            Contact the donation center if you have any concerns.</p>
+                    </div>
+                    <div class="process-step-card">
+                        <span class="step-number">✓</span>
+                        <h3>Feel Great!</h3>
+                        <p>You've done an amazing thing! Your donation can help save up to three lives. Be proud of your
+                            contribution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="find-center" class="content-section alt-bg">
+            <div class="container">
+                <h2>Find a Donation Center</h2>
+                <p>Locate a convenient blood donation center or mobile drive near you.</p>
+                <form id="find-center-form" class="find-center-form">
+                    <input type="text" id="zipcode" name="zipcode" placeholder="Enter your Zip Code"
+                        aria-label="Zip Code">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <div id="search-results" class="search-results" aria-live="polite">
+                    <!-- Search results will be displayed here (mocked) -->
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="content-section">
+            <div class="container">
+                <h2>Register to Donate Blood</h2>
+                <p>Fill out the form below to schedule your blood donation. Your information will help us prepare for
+                    your visit.</p>
+                <form id="donation-registration-form" class="registration-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="bloodType">Blood Type (Optional)</label>
+                            <select id="bloodType" name="bloodType">
+                                <option value="">Select Blood Type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="unknown">I don't know</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="streetAddress">Street Address</label>
+                            <input type="text" id="streetAddress" name="streetAddress" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="regZipCode">Zip Code</label>
+                            <input type="text" id="regZipCode" name="regZipCode" required aria-required="true"
+                                pattern="[0-9]{5}(-[0-9]{4})?" placeholder="e.g., 12345 or 12345-6789">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Donation Date</label>
+                            <input type="date" id="preferredDate" name="preferredDate" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredTime">Preferred Donation Time</label>
+                            <input type="time" id="preferredTime" name="preferredTime" required aria-required="true">
+                        </div>
+                        <div class="form-group form-consent">
+                            <input type="checkbox" id="consent" name="consent" required aria-required="true">
+                            <label for="consent" class="consent-label">I consent to providing my information for the
+                                purpose of blood donation scheduling and understand it will be handled according to the
+                                privacy policy.</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register My Interest</button>
+                </form>
+                <div id="registration-feedback" class="form-feedback" aria-live="polite">
+                    <!-- Registration feedback will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="request-blood" class="content-section">
+            <div class="container">
+                <h2>Need Blood? Find Potential Donors</h2>
+                <p>If you or a loved one needs blood, please select the required blood group below. We will check our
+                    registry for potential matches. <strong>Important:</strong> We prioritize donor privacy. We do not
+                    share donor personal information directly. If potential matches are found, our team will facilitate
+                    contact through official channels and with verified medical requests.</p>
+                <form id="request-blood-form" class="find-center-form"> <!-- Reusing .find-center-form for styling -->
+                    <div class="form-group">
+                        <label for="requiredBloodGroup" class="sr-only">Required Blood Group</label>
+                        <select id="requiredBloodGroup" name="requiredBloodGroup" required>
+                            <option value="">Select Blood Group Needed</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search for Donors</button>
+                </form>
+                <div id="donor-search-results" class="search-results" aria-live="polite">
+                    <!-- Donor search results will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="content-section alt-bg">
+            <div class="container">
+                <h2>Voices of Impact: Testimonials</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"Donating blood was such an easy process, and knowing I helped save a life is an incredible
+                            feeling. The staff were amazing!"</p>
+                        <cite>— Sarah L., Blood Donor</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"My son needed multiple transfusions during his treatment. We are forever grateful to the
+                            selfless donors who gave him a chance."</p>
+                        <cite>— Mark T., Parent of Recipient</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"I've been donating for years. It's a small part of my time, but it makes a huge difference.
+                            I encourage everyone who can to donate."</p>
+                        <cite>— David K., Regular Donor</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>Have questions about donating, hosting a blood drive, or our services? We're here to help!</p>
+                <div class="contact-info-grid">
+                    <div class="contact-card">
+                        <h3>General Inquiries</h3>
+                        <p>For any questions or information about blood donation.</p>
+                        <p><strong>Email:</strong> <a
+                                href="mailto:info@blooddonationconnect.org">info@blooddonationconnect.org</a></p>
+                        <p><strong>Phone:</strong> <a href="tel:+11234567890">(123) 456-7890</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Donor Support</h3>
+                        <p>Questions about eligibility or your donation appointment.</p>
+                        <p><strong>Email:</strong> <a
+                                href="mailto:support@blooddonationconnect.org">support@blooddonationconnect.org</a></p>
+                        <p><strong>Phone:</strong> <a href="tel:+11234567891">(123) 456-7891</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Visit Us (Main Office)</h3>
+                        <p>123 LifeSave St, HealthCity, HC 54321</p>
+                        <p>(Please schedule appointments for donations at specific centers)</p>
+                    </div>
+                </div>
+                <!-- Optional: Simple Contact Form Placeholder
+                <form id="contact-form" class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <div class="form-group">
+                        <label for="contactName">Your Name</label>
+                        <input type="text" id="contactName" name="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Your Email</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <div id="contact-form-feedback" class="form-feedback" aria-live="polite"></div>
+                -->
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h4>About Us</h4>
+                    <p>Blood Donation Connect is dedicated to saving lives by connecting generous donors with those in
+                        need. Join our mission to ensure a safe and stable blood supply for everyone.</p>
+                </div>
+                <div class="footer-section quick-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#why-donate">Why Donate?</a></li>
+                        <li><a href="#eligibility">Eligibility</a></li>
+                        <li><a href="#find-center">Find a Center</a></li>
+                        <li><a href="#register">Register to Donate</a></li>
+                        <li><a href="#donation-process">Donation Process</a></li>
+                        <li><a href="privacy.html">Privacy Policy (Example)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact-details">
+                    <h4>Contact Info</h4>
+                    <p>123 LifeSave St, HealthCity, HC 54321</p>
+                    <p>Email: <a href="mailto:info@blooddonationconnect.org">info@blooddonationconnect.org</a></p>
+                    <p>Phone: <a href="tel:+11234567890">(123) 456-7890</a></p>
+                </div>
+                <div class="footer-section social-media">
+                    <h4>Follow Us</h4>
+                    <a href="#" aria-label="Facebook"><img src="https://via.placeholder.com/24/ffffff/000000?text=F"
+                            alt="Facebook"></a>
+                    <a href="#" aria-label="Twitter"><img src="https://via.placeholder.com/24/ffffff/000000?text=T"
+                            alt="Twitter"></a>
+                    <a href="#" aria-label="Instagram"><img src="https://via.placeholder.com/24/ffffff/000000?text=I"
+                            alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Blood Donation Connect. All Rights Reserved. Saving Lives, One
+                    Pint at a Time.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- <script type="module" src="index.tsx"></script> -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
